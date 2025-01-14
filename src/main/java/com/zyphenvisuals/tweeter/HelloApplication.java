@@ -15,8 +15,10 @@ public class HelloApplication extends Application {
         Application.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("views/login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setMinHeight(480);
+        stage.setMinWidth(720);
+        stage.setTitle("Tweeter");
         stage.setScene(scene);
         stage.show();
     }
