@@ -5,7 +5,7 @@ import com.zyphenvisuals.tweeter.router.RouterController;
 import com.zyphenvisuals.tweeter.router.RouterPath;
 import javafx.event.ActionEvent;
 
-public class Home {
+public class Search {
     public void goToHome(ActionEvent actionEvent) {
         RouterController.goTo(actionEvent, RouterPath.HOME);
     }

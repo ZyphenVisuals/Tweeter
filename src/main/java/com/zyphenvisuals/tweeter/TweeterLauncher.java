@@ -14,7 +14,7 @@ public class TweeterLauncher extends Application {
     public void start(Stage stage) throws IOException {
         Application.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
 
-        FXMLLoader fxmlLoader = new FXMLLoader(TweeterLauncher.class.getResource("views/home.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TweeterLauncher.class.getResource("views/login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setMinHeight(540);
         stage.setMinWidth(960);

@@ -33,7 +33,6 @@ public class Login implements Initializable {
     public PasswordField passwordInput;
     public Button loginButton;
     public Message errorMessage;
-    public RingProgressIndicator loadingIndicator;
 
     public void goToRegister(ActionEvent actionEvent) {
             RouterController.goTo(actionEvent, RouterPath.REGISTER);
@@ -55,7 +54,6 @@ public class Login implements Initializable {
         // TODO proper logging
         System.out.println("Logging in user " + username);
 
-        loadingIndicator.setVisible(true);
         HttpResponse<String> res = NetworkController.sendPostRequest("/user/login", new LoginRequest(username, password));
 
         if(res.statusCode() == 200) {
@@ -68,6 +66,9 @@ public class Login implements Initializable {
 
             // set the token
             NetworkController.setToken(token.getToken());
+
+            // go home
+            RouterController.goTo(actionEvent, RouterPath.HOME);
         } else if(res.statusCode() == 403) {
             // auth failure
             errorMessage.setVisible(true);

@@ -24,6 +24,15 @@ public class RouterController {
             case REGISTER -> {
                 fxmlFilename = "views/register.fxml";
             }
+            case HOME -> {
+                fxmlFilename = "views/home.fxml";
+            }
+            case SEARCH -> {
+                fxmlFilename = "views/search.fxml";
+            }
+            case SETTINGS -> {
+                fxmlFilename = "views/settings.fxml";
+            }
             default -> throw new IllegalStateException("Unexpected value: " + path);
         }
 

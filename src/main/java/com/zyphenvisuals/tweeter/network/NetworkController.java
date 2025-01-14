@@ -18,6 +18,10 @@ public class NetworkController {
     private static final HttpClient client = HttpClient.newHttpClient();
     private static final Gson gson = new Gson();
 
+    public static void resetToken() {
+        NetworkController.token = null;
+    }
+
     public static void setToken(String token) {
         NetworkController.token = token;
     }
