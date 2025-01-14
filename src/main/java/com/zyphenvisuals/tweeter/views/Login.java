@@ -1,5 +1,7 @@
 package com.zyphenvisuals.tweeter.views;
 
+import com.zyphenvisuals.tweeter.model.LoginRequest;
+import com.zyphenvisuals.tweeter.network.NetworkController;
 import com.zyphenvisuals.tweeter.router.RouterController;
 import com.zyphenvisuals.tweeter.router.RouterPath;
 import javafx.beans.binding.Bindings;
@@ -35,6 +37,10 @@ public class Login implements Initializable {
 
         // TODO proper logging
         System.out.println("Logging in user " + username);
+
+        String res = NetworkController.sendPostRequest("/user/login", new LoginRequest(username, password));
+
+        System.out.println(res);
     }
 
     @Override
