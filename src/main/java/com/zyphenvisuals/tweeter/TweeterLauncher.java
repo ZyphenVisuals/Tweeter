@@ -9,12 +9,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class TweeterLauncher extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Application.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
 
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("views/login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TweeterLauncher.class.getResource("views/login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setMinHeight(480);
         stage.setMinWidth(720);

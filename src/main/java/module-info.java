@@ -7,4 +7,5 @@ module com.zyphenvisuals.tweeter {
 
     opens com.zyphenvisuals.tweeter.views to javafx.fxml;
     exports com.zyphenvisuals.tweeter;
+    exports com.zyphenvisuals.tweeter.router;
 }
