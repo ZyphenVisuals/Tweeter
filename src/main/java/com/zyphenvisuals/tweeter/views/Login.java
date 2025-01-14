@@ -1,5 +1,9 @@
 package com.zyphenvisuals.tweeter.views;
 
+import atlantafx.base.controls.Message;
+import atlantafx.base.controls.RingProgressIndicator;
+import com.google.gson.Gson;
+import com.zyphenvisuals.tweeter.model.AuthToken;
 import com.zyphenvisuals.tweeter.model.LoginRequest;
 import com.zyphenvisuals.tweeter.network.NetworkController;
 import com.zyphenvisuals.tweeter.router.RouterController;
@@ -17,20 +21,33 @@ import net.synedra.validatorfx.Validator;
 
 import java.io.IOException;
 import java.net.URL;
+import java.net.http.HttpResponse;
+import java.time.Instant;
 import java.util.ResourceBundle;
 
 public class Login implements Initializable {
     private final Validator validator = new Validator();
+    private final Gson gson = new Gson();
 
     public TextField usernameInput;
     public PasswordField passwordInput;
     public Button loginButton;
+    public Message errorMessage;
+    public RingProgressIndicator loadingIndicator;
 
     public void goToRegister(ActionEvent actionEvent) {
             RouterController.goTo(actionEvent, RouterPath.REGISTER);
     }
 
+    private void hideMessages(){
+        errorMessage.setVisible(false);
+        errorMessage.setManaged(false);
+    }
+
     public void login(ActionEvent actionEvent) {
+        // hide messages
+        hideMessages();
+
         // get the form data
         String username = usernameInput.getText();
         String password = passwordInput.getText();
@@ -38,13 +55,35 @@ public class Login implements Initializable {
         // TODO proper logging
         System.out.println("Logging in user " + username);
 
-        String res = NetworkController.sendPostRequest("/user/login", new LoginRequest(username, password));
+        loadingIndicator.setVisible(true);
+        HttpResponse<String> res = NetworkController.sendPostRequest("/user/login", new LoginRequest(username, password));
 
-        System.out.println(res);
+        if(res.statusCode() == 200) {
+            // auth success
+            // TODO proper logging
+            System.out.println("Token received");
+
+            // deserialize
+            AuthToken token = gson.fromJson(res.body(), AuthToken.class);
+
+            // set the token
+            NetworkController.setToken(token.getToken());
+        } else if(res.statusCode() == 403) {
+            // auth failure
+            errorMessage.setVisible(true);
+            errorMessage.setManaged(true);
+            errorMessage.setDescription("Incorrect username or password.");
+        } else {
+            // unexpected error
+            errorMessage.setVisible(true);
+            errorMessage.setManaged(true);
+            errorMessage.setDescription("An unexpected error occurred.");
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // initialize validators
         validator.createCheck()
                 .dependsOn("username", usernameInput.textProperty())
                 .withMethod(c -> {
@@ -73,5 +112,8 @@ public class Login implements Initializable {
                 Bindings.concat("Cannot sign up:\n", validator.createStringBinding())
         );
         ((HBox)parentOfButton).getChildren().add(signUpWrapper);
+
+        // hide warning
+        hideMessages();
     }
 }

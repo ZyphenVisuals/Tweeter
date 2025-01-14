@@ -1,34 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import atlantafx.base.controls.Message?>
+<?import atlantafx.base.controls.RingProgressIndicator?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<VBox alignment="CENTER" spacing="30.0"
-      xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.zyphenvisuals.tweeter.views.Login"
-      prefHeight="720.0" prefWidth="1280.0">
+
+<VBox alignment="CENTER" prefHeight="720.0" prefWidth="1280.0" spacing="30.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zyphenvisuals.tweeter.views.Login">
 
     <Text styleClass="title-1, text, accent">
         Welcome back!
     </Text>
 
-    <VBox alignment="CENTER_LEFT" spacing="10.0" maxWidth="300.0">
+    <VBox alignment="CENTER_LEFT" maxWidth="300.0" spacing="10.0">
 
-        <Label text="Username"/>
+        <Label text="Username" />
         <TextField fx:id="usernameInput" styleClass="rounded" />
 
-        <Label text="Password"/>
+        <Label text="Password" />
         <PasswordField fx:id="passwordInput" styleClass="rounded" />
+
+      <Message fx:id="errorMessage" styleClass="danger" title="Login failed">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Message>
 
     </VBox>
 
     <HBox alignment="CENTER" spacing="10.0">
-        <Button text="Register" styleClass="rounded" onAction="#goToRegister"/>
-        <Button text="Login" styleClass="accent, rounded" onAction="#login" defaultButton="true" fx:id="loginButton"/>
+        <Button onAction="#goToRegister" styleClass="rounded" text="Register" />
+        <Button fx:id="loginButton" defaultButton="true" onAction="#login" styleClass="accent, rounded" text="Login" />
     </HBox>
 </VBox>

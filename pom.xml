@@ -4,6 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx</artifactId>
+        <version>23.0.1</version>
+    </parent>
+
     <groupId>com.zyphenvisuals</groupId>
     <artifactId>Tweeter</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -17,13 +23,13 @@
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>17.0.6</version>
+            <artifactId>javafx-fxml</artifactId>
+            <version>23.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>17.0.6</version>
+            <artifactId>javafx-controls</artifactId>
+            <version>23.0.1</version>
         </dependency>
         <dependency>
             <groupId>net.synedra</groupId>
@@ -35,11 +41,6 @@
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.kordamp.ikonli</groupId>
-            <artifactId>ikonli-javafx</artifactId>
-            <version>12.3.1</version>
         </dependency>
         <dependency>
             <groupId>io.github.mkpaz</groupId>

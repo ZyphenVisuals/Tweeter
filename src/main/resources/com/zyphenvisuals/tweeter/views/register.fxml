@@ -7,6 +7,8 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.text.Text?>
+<?import atlantafx.base.controls.Message?>
+<?import javafx.geometry.Insets?>
 <VBox alignment="CENTER" spacing="30.0"
       xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
@@ -14,7 +16,7 @@
       prefHeight="720.0" prefWidth="1280.0">
 
     <Text styleClass="title-1, text, accent">
-        Welcome back!
+        Welcome to Tweeter!
     </Text>
 
     <VBox alignment="CENTER_LEFT" spacing="10.0" maxWidth="300.0">
@@ -22,16 +24,27 @@
         <Label text="Username"/>
         <TextField fx:id="usernameInput" styleClass="rounded" />
 
-        <Label text="Password"/>
+        <Label text="Password (Minimum 8 characters.)"/>
         <PasswordField fx:id="passwordInput" styleClass="rounded" />
 
         <Label text="Confirm your password"/>
         <PasswordField fx:id="passwordConfirmationInput" styleClass="rounded" />
 
+        <Message fx:id="successMessage" description="Please log in to continue." styleClass="success" title="Account created" >
+            <VBox.margin>
+                <Insets top="10.0" />
+            </VBox.margin>
+        </Message>
+        <Message fx:id="errorMessage" styleClass="danger" title="Login failed" >
+            <VBox.margin>
+                <Insets top="10.0" />
+            </VBox.margin>
+        </Message>
+
     </VBox>
 
     <HBox alignment="CENTER" spacing="10.0">
         <Button text="Login" styleClass="rounded" onAction="#goToLogin"/>
-        <Button text="Register" styleClass="accent, rounded" defaultButton="true"/>
+        <Button text="Register" styleClass="accent, rounded" defaultButton="true" onAction="#register" fx:id="registerButton"/>
     </HBox>
 </VBox>

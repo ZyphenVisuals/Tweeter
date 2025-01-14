@@ -12,7 +12,7 @@ import java.util.List;
 public class NetworkController {
     // configs
     private static String token;
-    private static final String baseUrl = "https://zyphen.tweeter.com/api/v1";
+    private static final String baseUrl = "https://tweeter.zyphenvisuals.com/api/v1";
 
     // clients and stuff
     private static final HttpClient client = HttpClient.newHttpClient();
@@ -22,7 +22,7 @@ public class NetworkController {
         NetworkController.token = token;
     }
 
-    public static String sendPostRequest(String path, Object body)  {
+    public static HttpResponse<String> sendPostRequest(String path, Object body)  {
         try {
             HttpRequest.Builder request = HttpRequest.newBuilder();
 
@@ -40,19 +40,21 @@ public class NetworkController {
                 request.header("Authorization", "Bearer " + token);
             }
 
+            // add content headers
+            request.header("Content-Type", "application/json");
+            request.header("Accept", "application/json");
+
             // build the request
             HttpRequest finalRequest = request.build();
 
             // send it
-            HttpResponse<String> response = client.send(finalRequest, HttpResponse.BodyHandlers.ofString());
-
-            return response.statusCode() == 200 ? response.body() : null;
+            return client.send(finalRequest, HttpResponse.BodyHandlers.ofString());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static String sendGetRequest(String path, List<UrlParam> params) {
+    public static HttpResponse<String> sendGetRequest(String path, List<UrlParam> params) {
         try {
             HttpRequest.Builder request = HttpRequest.newBuilder();
 
@@ -81,13 +83,14 @@ public class NetworkController {
                 request.header("Authorization", "Bearer " + token);
             }
 
+            // add content headers
+            request.header("Accept", "application/json");
+
             // build the request
             HttpRequest finalRequest = request.build();
 
             // send it
-            HttpResponse<String> response = client.send(finalRequest, HttpResponse.BodyHandlers.ofString());
-
-            return response.statusCode() == 200 ? response.body() : null;
+            return client.send(finalRequest, HttpResponse.BodyHandlers.ofString());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
