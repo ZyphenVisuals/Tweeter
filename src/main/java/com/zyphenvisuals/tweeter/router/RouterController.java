@@ -37,7 +37,12 @@ public class RouterController {
         }
 
         // get the stage - horribly cursed code from https://www.youtube.com/watch?v=hcM-R-YOKkQ
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = ((Node)event.getSource()).getScene();
+        Stage stage = (Stage)scene.getWindow();
+
+        // save stage size
+        double width = stage.getWidth();
+        double height = stage.getHeight();
 
         // load the scene
         try {
@@ -45,6 +50,11 @@ public class RouterController {
 
             // set it
             stage.setScene(newScene);
+
+            // restore stage size
+            stage.setWidth(width);
+            stage.setHeight(height);
+
             stage.show();
         } catch (IOException e) {
             System.err.println("Failed to load fxml file: " + fxmlFilename);
