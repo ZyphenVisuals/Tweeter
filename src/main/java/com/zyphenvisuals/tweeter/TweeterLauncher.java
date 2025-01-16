@@ -3,6 +3,8 @@ package com.zyphenvisuals.tweeter;
 import atlantafx.base.theme.PrimerDark;
 
 import com.zyphenvisuals.tweeter.background.DateUpdater;
+import com.zyphenvisuals.tweeter.background.TokenUpdater;
+import com.zyphenvisuals.tweeter.router.RouterController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,17 +15,22 @@ import java.io.IOException;
 public class TweeterLauncher extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        // set up the application
         Application.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
 
-        FXMLLoader fxmlLoader = new FXMLLoader(TweeterLauncher.class.getResource("views/login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        // set up the stage
         stage.setMinHeight(540);
         stage.setMinWidth(960);
         stage.setTitle("Tweeter");
+        RouterController.setStage(stage);
+
+        // set up the initial scene
+        FXMLLoader fxmlLoader = new FXMLLoader(TweeterLauncher.class.getResource("views/login.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
+
+        // show the stage
         stage.show();
-
-
     }
 
     public static void main(String[] args) {
@@ -32,11 +39,13 @@ public class TweeterLauncher extends Application {
 
         // start background threads
         DateUpdater.start();
+        TokenUpdater.start();
 
         // launch app
         launch();
 
         // stop background threads
         DateUpdater.stop();
+        TokenUpdater.stop();
     }
 }

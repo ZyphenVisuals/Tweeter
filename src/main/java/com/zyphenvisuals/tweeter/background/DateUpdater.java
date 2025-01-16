@@ -1,5 +1,6 @@
 package com.zyphenvisuals.tweeter.background;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -18,7 +19,7 @@ public class DateUpdater {
     }
 
     public static void start() {
-        System.out.println("Starting DateUpdater");
+        System.out.println("Starting DateUpdater in the background.");
 
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -27,7 +28,7 @@ public class DateUpdater {
                     runnable.run();
                 }
             }
-        }, 1000, 1000);
+        }, Duration.ofSeconds(1).toMillis(), Duration.ofSeconds(1).toMillis());
     }
 
     public static void stop() {

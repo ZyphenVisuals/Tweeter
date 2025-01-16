@@ -1,12 +1,11 @@
 package com.zyphenvisuals.tweeter.router;
 
 import com.zyphenvisuals.tweeter.TweeterLauncher;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -15,7 +14,10 @@ public class RouterController {
     @Getter
     private static RouterPath currentPath;
 
-    public static void goTo(ActionEvent event, RouterPath path) {
+    @Setter
+    private static Stage stage;
+
+    public static void goTo(RouterPath path) {
         // TODO proper logging
         System.out.println("Going to " + path);
 
@@ -39,10 +41,6 @@ public class RouterController {
             }
             default -> throw new IllegalStateException("Unexpected value: " + path);
         }
-
-        // get the stage - horribly cursed code from https://www.youtube.com/watch?v=hcM-R-YOKkQ
-        Scene scene = ((Node)event.getSource()).getScene();
-        Stage stage = (Stage)scene.getWindow();
 
         // save stage size
         double width = stage.getWidth();

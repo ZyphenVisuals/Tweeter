@@ -4,7 +4,6 @@ import com.zyphenvisuals.tweeter.background.DateUpdater;
 import com.zyphenvisuals.tweeter.network.NetworkController;
 import com.zyphenvisuals.tweeter.router.RouterController;
 import com.zyphenvisuals.tweeter.router.RouterPath;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -23,25 +22,25 @@ public class Sidebar implements Initializable {
     @FXML
     private Button logoutButton;
 
-    public void goToHome(ActionEvent actionEvent) {
+    public void goToHome() {
         DateUpdater.reset();
-        RouterController.goTo(actionEvent, RouterPath.HOME);
+        RouterController.goTo(RouterPath.HOME);
     }
 
-    public void goToSearch(ActionEvent actionEvent) {
+    public void goToSearch() {
         DateUpdater.reset();
-        RouterController.goTo(actionEvent, RouterPath.SEARCH);
+        RouterController.goTo(RouterPath.SEARCH);
     }
 
-    public void goToSettings(ActionEvent actionEvent) {
+    public void goToSettings() {
         DateUpdater.reset();
-        RouterController.goTo(actionEvent, RouterPath.SETTINGS);
+        RouterController.goTo(RouterPath.SETTINGS);
     }
 
-    public void goToLogin(ActionEvent actionEvent) {
+    public void goToLogin() {
         NetworkController.resetToken();
         DateUpdater.reset();
-        RouterController.goTo(actionEvent, RouterPath.LOGIN);
+        RouterController.goTo(RouterPath.LOGIN);
     }
 
     @Override

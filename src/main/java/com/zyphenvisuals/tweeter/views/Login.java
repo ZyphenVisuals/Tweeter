@@ -1,16 +1,13 @@
 package com.zyphenvisuals.tweeter.views;
 
 import atlantafx.base.controls.Message;
-import atlantafx.base.controls.RingProgressIndicator;
 import com.google.gson.Gson;
 import com.zyphenvisuals.tweeter.model.AuthToken;
 import com.zyphenvisuals.tweeter.model.LoginRequest;
-import com.zyphenvisuals.tweeter.model.TweetModel;
 import com.zyphenvisuals.tweeter.network.NetworkController;
 import com.zyphenvisuals.tweeter.router.RouterController;
 import com.zyphenvisuals.tweeter.router.RouterPath;
 import javafx.beans.binding.Bindings;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -20,11 +17,8 @@ import javafx.scene.layout.HBox;
 import net.synedra.validatorfx.TooltipWrapper;
 import net.synedra.validatorfx.Validator;
 
-import java.io.IOException;
 import java.net.URL;
 import java.net.http.HttpResponse;
-import java.time.Instant;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class Login implements Initializable {
@@ -36,8 +30,8 @@ public class Login implements Initializable {
     public Button loginButton;
     public Message errorMessage;
 
-    public void goToRegister(ActionEvent actionEvent) {
-            RouterController.goTo(actionEvent, RouterPath.REGISTER);
+    public void goToRegister() {
+            RouterController.goTo(RouterPath.REGISTER);
     }
 
     private void hideMessages(){
@@ -45,7 +39,7 @@ public class Login implements Initializable {
         errorMessage.setManaged(false);
     }
 
-    public void login(ActionEvent actionEvent) {
+    public void login() {
         // hide messages
         hideMessages();
 
@@ -70,7 +64,7 @@ public class Login implements Initializable {
             NetworkController.setToken(token.getToken());
 
             // go home
-            RouterController.goTo(actionEvent, RouterPath.HOME);
+            RouterController.goTo(RouterPath.HOME);
         } else if(res.statusCode() == 403) {
             // auth failure
             errorMessage.setVisible(true);

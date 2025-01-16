@@ -1,7 +1,6 @@
 package com.zyphenvisuals.tweeter.views;
 
 import atlantafx.base.controls.Message;
-import com.zyphenvisuals.tweeter.model.AuthToken;
 import com.zyphenvisuals.tweeter.model.RegisterRequest;
 import com.zyphenvisuals.tweeter.network.NetworkController;
 import com.zyphenvisuals.tweeter.router.RouterController;
@@ -38,8 +37,8 @@ public class Register implements Initializable {
         successMessage.setManaged(false);
     }
 
-    public void goToLogin(ActionEvent actionEvent) {
-        RouterController.goTo(actionEvent, RouterPath.LOGIN);
+    public void goToLogin() {
+        RouterController.goTo(RouterPath.LOGIN);
     }
 
     public void register(ActionEvent actionEvent) {

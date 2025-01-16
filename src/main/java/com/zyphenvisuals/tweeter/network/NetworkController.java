@@ -2,6 +2,8 @@ package com.zyphenvisuals.tweeter.network;
 
 import com.google.gson.Gson;
 import com.zyphenvisuals.tweeter.model.UrlParam;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -11,7 +13,10 @@ import java.util.List;
 
 public class NetworkController {
     // configs
-    private static String token;
+    @Setter
+    @Getter
+    private static String token = null;
+
     private static final String baseUrl = "https://tweeter.zyphenvisuals.com/api/v1";
 
     // clients and stuff
@@ -20,10 +25,6 @@ public class NetworkController {
 
     public static void resetToken() {
         NetworkController.token = null;
-    }
-
-    public static void setToken(String token) {
-        NetworkController.token = token;
     }
 
     public static HttpResponse<String> sendPostRequest(String path, Object body)  {
