@@ -1,9 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
+<?import atlantafx.base.controls.Message?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.HBox?>
-<HBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: -color-bg-subtle;"
-      xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.zyphenvisuals.tweeter.views.Settings">
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: -color-bg-subtle;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zyphenvisuals.tweeter.views.Settings">
    <fx:include source="../components/sidebar.fxml" />
+   <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+      <content>
+         <VBox alignment="TOP_CENTER">
+            <children>
+               <VBox maxWidth="500.0" prefWidth="500.0">
+                  <children>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-1" text="Account">
+                        <VBox.margin>
+                           <Insets bottom="10.0" />
+                        </VBox.margin>
+                     </Text>
+                     <Text fx:id="usernameLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Curently signed in as: " />
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-3" text="Reset password">
+                        <VBox.margin>
+                           <Insets bottom="20.0" top="10.0" />
+                        </VBox.margin>
+                     </Text>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Old pasword" />
+                     <PasswordField fx:id="oldPasswordInput">
+                        <VBox.margin>
+                           <Insets bottom="10.0" top="10.0" />
+                        </VBox.margin>
+                     </PasswordField>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="New password" />
+                     <PasswordField fx:id="newPasswordInput">
+                        <VBox.margin>
+                           <Insets bottom="10.0" top="10.0" />
+                        </VBox.margin>
+                     </PasswordField>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm new password" />
+                     <PasswordField fx:id="newPasswordConfirmationInput">
+                        <VBox.margin>
+                           <Insets bottom="10.0" top="10.0" />
+                        </VBox.margin>
+                     </PasswordField>
+                     <Message fx:id="successMessage" description="" styleClass="success" title="Password changed!">
+                        <VBox.margin>
+                           <Insets bottom="10.0" top="10.0" />
+                        </VBox.margin>
+                     </Message>
+                     <Message fx:id="errorMessage" styleClass="danger" title="Couldn't change your password">
+                        <VBox.margin>
+                           <Insets bottom="10.0" top="10.0" />
+                        </VBox.margin>
+                     </Message>
+                     <HBox alignment="CENTER">
+                        <children>
+                           <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetPassword" styleClass="danger" text="Reset" />
+                        </children>
+                        <VBox.margin>
+                           <Insets top="5.0" />
+                        </VBox.margin>
+                     </HBox>
+                  </children>
+               </VBox>
+            </children>
+            <padding>
+               <Insets bottom="40.0" top="40.0" />
+            </padding>
+         </VBox>
+      </content>
+   </ScrollPane>
 </HBox>
