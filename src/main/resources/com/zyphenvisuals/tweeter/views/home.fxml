@@ -5,352 +5,89 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: -color-bg-subtle;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zyphenvisuals.tweeter.views.Home">
-   <VBox alignment="TOP_CENTER" maxWidth="400.0" minWidth="300.0" prefHeight="200.0" prefWidth="400.0" spacing="10.0" style="-fx-background-color: -color-bg-default;">
-      <padding>
-         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-      </padding>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-1, text, accent" text="Tweeter" textAlignment="CENTER">
-         <VBox.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </VBox.margin>
-      </Text>
-      <Button focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goToHome" text="Home">
-         <styleClass>
-            <String fx:value="large" />
-            <String fx:value="accent" />
-         </styleClass>
-      </Button>
-      <Button focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goToSearch" styleClass="large" text="Search" textAlignment="CENTER" />
-      <Spacer VBox.vgrow="ALWAYS" />
-      <Button focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goToSettings" styleClass="large" text="Settings" textAlignment="CENTER" />
-      <Button focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goToLogin" styleClass="large" text="Sign out" />
-      <effect>
-         <DropShadow height="75.0" radius="43.25" width="100.0">
-            <color>
-               <Color opacity="0.2977099120616913" />
-            </color>
-         </DropShadow>
-      </effect>
-      <HBox.margin>
-         <Insets />
-      </HBox.margin>
-   </VBox>
-   <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="ALWAYS" HBox.hgrow="ALWAYS">
-      <content>
-         <VBox alignment="TOP_CENTER" fillWidth="false" spacing="30.0">
+   <fx:include source="../components/sidebar.fxml" />
+   <StackPane prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+      <children>
+         <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+            <VBox fx:id="tweetContainer" alignment="TOP_CENTER" fillWidth="false" spacing="30.0">
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#loadMoreTweets" text="Load more" />
+               </children>
+            </VBox>
+         </ScrollPane>
+         <HBox alignment="BOTTOM_RIGHT" pickOnBounds="false" prefHeight="100.0" prefWidth="200.0">
             <children>
-               <Pane style="-fx-background-color: -color-bg-default; -fx-background-radius: 10;">
-                  <children>
-                     <VBox spacing="5.0">
-                        <children>
-                           <HBox alignment="CENTER_LEFT" spacing="5.0">
-                              <children>
-                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-muted" text="\@testuser" />
-                                 <Circle fill="DODGERBLUE" radius="3.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: -color-fg-subtle;" />
-                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-subtle" text="10m" />
-                              </children>
-                           </HBox>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." wrappingWidth="500.0">
-                              <font>
-                                 <Font size="16.0" />
-                              </font>
-                              <VBox.margin>
-                                 <Insets />
-                              </VBox.margin>
-                           </Text>
-                        </children>
-                        <padding>
-                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                        </padding>
-                     </VBox>
-                  </children>
+               <Button mnemonicParsing="false" onAction="#openCompose" text="+">
+                  <styleClass>
+                     <String fx:value="rounded" />
+                     <String fx:value="accent" />
+                     <String fx:value="large" />
+                  </styleClass>
                   <effect>
-                     <DropShadow height="50.0" radius="24.5" width="50.0">
+                     <DropShadow height="30.0" radius="14.5" width="30.0">
                         <color>
                            <Color opacity="0.30000001192092896" />
                         </color>
                      </DropShadow>
                   </effect>
-               </Pane>
-               <Pane style="-fx-background-color: -color-bg-default; -fx-background-radius: 10;">
-                  <children>
-                     <VBox spacing="5.0">
-                        <children>
-                           <HBox alignment="CENTER_LEFT" spacing="5.0">
-                              <children>
-                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-muted" text="\@testuser" />
-                                 <Circle fill="DODGERBLUE" radius="3.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: -color-fg-subtle;" />
-                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-subtle" text="10m" />
-                              </children>
-                           </HBox>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." wrappingWidth="500.0">
-                              <font>
-                                 <Font size="16.0" />
-                              </font>
-                              <VBox.margin>
-                                 <Insets />
-                              </VBox.margin>
-                           </Text>
-                        </children>
-                        <padding>
-                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                        </padding>
-                     </VBox>
-                  </children>
-                  <effect>
-                     <DropShadow height="50.0" radius="24.5" width="50.0">
-                        <color>
-                           <Color opacity="0.30000001192092896" />
-                        </color>
-                     </DropShadow>
-                  </effect>
-               </Pane>
-               <Pane style="-fx-background-color: -color-bg-default; -fx-background-radius: 10;">
-                  <children>
-                     <VBox spacing="5.0">
-                        <children>
-                           <HBox alignment="CENTER_LEFT" spacing="5.0">
-                              <children>
-                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-muted" text="\@testuser" />
-                                 <Circle fill="DODGERBLUE" radius="3.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: -color-fg-subtle;" />
-                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-subtle" text="10m" />
-                              </children>
-                           </HBox>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." wrappingWidth="500.0">
-                              <font>
-                                 <Font size="16.0" />
-                              </font>
-                              <VBox.margin>
-                                 <Insets />
-                              </VBox.margin>
-                           </Text>
-                        </children>
-                        <padding>
-                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                        </padding>
-                     </VBox>
-                  </children>
-                  <effect>
-                     <DropShadow height="50.0" radius="24.5" width="50.0">
-                        <color>
-                           <Color opacity="0.30000001192092896" />
-                        </color>
-                     </DropShadow>
-                  </effect>
-               </Pane>
-               <Pane style="-fx-background-color: -color-bg-default; -fx-background-radius: 10;">
-                  <children>
-                     <VBox spacing="5.0">
-                        <children>
-                           <HBox alignment="CENTER_LEFT" spacing="5.0">
-                              <children>
-                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-muted" text="\@testuser" />
-                                 <Circle fill="DODGERBLUE" radius="3.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: -color-fg-subtle;" />
-                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-subtle" text="10m" />
-                              </children>
-                           </HBox>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." wrappingWidth="500.0">
-                              <font>
-                                 <Font size="16.0" />
-                              </font>
-                              <VBox.margin>
-                                 <Insets />
-                              </VBox.margin>
-                           </Text>
-                        </children>
-                        <padding>
-                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                        </padding>
-                     </VBox>
-                  </children>
-                  <effect>
-                     <DropShadow height="50.0" radius="24.5" width="50.0">
-                        <color>
-                           <Color opacity="0.30000001192092896" />
-                        </color>
-                     </DropShadow>
-                  </effect>
-               </Pane>
-               <Pane style="-fx-background-color: -color-bg-default; -fx-background-radius: 10;">
-                  <children>
-                     <VBox spacing="5.0">
-                        <children>
-                           <HBox alignment="CENTER_LEFT" spacing="5.0">
-                              <children>
-                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-muted" text="\@testuser" />
-                                 <Circle fill="DODGERBLUE" radius="3.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: -color-fg-subtle;" />
-                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-subtle" text="10m" />
-                              </children>
-                           </HBox>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." wrappingWidth="500.0">
-                              <font>
-                                 <Font size="16.0" />
-                              </font>
-                              <VBox.margin>
-                                 <Insets />
-                              </VBox.margin>
-                           </Text>
-                        </children>
-                        <padding>
-                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                        </padding>
-                     </VBox>
-                  </children>
-                  <effect>
-                     <DropShadow height="50.0" radius="24.5" width="50.0">
-                        <color>
-                           <Color opacity="0.30000001192092896" />
-                        </color>
-                     </DropShadow>
-                  </effect>
-               </Pane>
-               <Pane style="-fx-background-color: -color-bg-default; -fx-background-radius: 10;">
-                  <children>
-                     <VBox spacing="5.0">
-                        <children>
-                           <HBox alignment="CENTER_LEFT" spacing="5.0">
-                              <children>
-                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-muted" text="\@testuser" />
-                                 <Circle fill="DODGERBLUE" radius="3.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: -color-fg-subtle;" />
-                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-subtle" text="10m" />
-                              </children>
-                           </HBox>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." wrappingWidth="500.0">
-                              <font>
-                                 <Font size="16.0" />
-                              </font>
-                              <VBox.margin>
-                                 <Insets />
-                              </VBox.margin>
-                           </Text>
-                        </children>
-                        <padding>
-                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                        </padding>
-                     </VBox>
-                  </children>
-                  <effect>
-                     <DropShadow height="50.0" radius="24.5" width="50.0">
-                        <color>
-                           <Color opacity="0.30000001192092896" />
-                        </color>
-                     </DropShadow>
-                  </effect>
-               </Pane>
-               <Pane style="-fx-background-color: -color-bg-default; -fx-background-radius: 10;">
-                  <children>
-                     <VBox spacing="5.0">
-                        <children>
-                           <HBox alignment="CENTER_LEFT" spacing="5.0">
-                              <children>
-                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-muted" text="\@testuser" />
-                                 <Circle fill="DODGERBLUE" radius="3.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: -color-fg-subtle;" />
-                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-subtle" text="10m" />
-                              </children>
-                           </HBox>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." wrappingWidth="500.0">
-                              <font>
-                                 <Font size="16.0" />
-                              </font>
-                              <VBox.margin>
-                                 <Insets />
-                              </VBox.margin>
-                           </Text>
-                        </children>
-                        <padding>
-                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                        </padding>
-                     </VBox>
-                  </children>
-                  <effect>
-                     <DropShadow height="50.0" radius="24.5" width="50.0">
-                        <color>
-                           <Color opacity="0.30000001192092896" />
-                        </color>
-                     </DropShadow>
-                  </effect>
-               </Pane>
-               <Pane style="-fx-background-color: -color-bg-default; -fx-background-radius: 10;">
-                  <children>
-                     <VBox spacing="5.0">
-                        <children>
-                           <HBox alignment="CENTER_LEFT" spacing="5.0">
-                              <children>
-                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-muted" text="\@testuser" />
-                                 <Circle fill="DODGERBLUE" radius="3.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: -color-fg-subtle;" />
-                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-subtle" text="10m" />
-                              </children>
-                           </HBox>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." wrappingWidth="500.0">
-                              <font>
-                                 <Font size="16.0" />
-                              </font>
-                              <VBox.margin>
-                                 <Insets />
-                              </VBox.margin>
-                           </Text>
-                        </children>
-                        <padding>
-                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                        </padding>
-                     </VBox>
-                  </children>
-                  <effect>
-                     <DropShadow height="50.0" radius="24.5" width="50.0">
-                        <color>
-                           <Color opacity="0.30000001192092896" />
-                        </color>
-                     </DropShadow>
-                  </effect>
-               </Pane>
-               <Pane style="-fx-background-color: -color-bg-default; -fx-background-radius: 10;">
-                  <children>
-                     <VBox spacing="5.0">
-                        <children>
-                           <HBox alignment="CENTER_LEFT" spacing="5.0">
-                              <children>
-                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-muted" text="\@testuser" />
-                                 <Circle fill="DODGERBLUE" radius="3.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: -color-fg-subtle;" />
-                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-subtle" text="10m" />
-                              </children>
-                           </HBox>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." wrappingWidth="500.0">
-                              <font>
-                                 <Font size="16.0" />
-                              </font>
-                              <VBox.margin>
-                                 <Insets />
-                              </VBox.margin>
-                           </Text>
-                        </children>
-                        <padding>
-                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                        </padding>
-                     </VBox>
-                  </children>
-                  <effect>
-                     <DropShadow height="50.0" radius="24.5" width="50.0">
-                        <color>
-                           <Color opacity="0.30000001192092896" />
-                        </color>
-                     </DropShadow>
-                  </effect>
-               </Pane>
+               </Button>
             </children>
             <padding>
-               <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               <Insets bottom="20.0" right="20.0" />
             </padding>
-         </VBox>
-      </content>
-   </ScrollPane>
+         </HBox>
+         <HBox fx:id="composeContainer" alignment="BOTTOM_RIGHT" fillHeight="false" pickOnBounds="false" prefHeight="100.0" prefWidth="200.0">
+            <padding>
+               <Insets bottom="20.0" right="20.0" />
+            </padding>
+            <children>
+               <VBox maxHeight="500.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="500.0" spacing="20.0" style="-fx-background-color: -color-bg-default; -fx-background-radius: 10;" translateY="400.0">
+                  <children>
+                     <HBox alignment="CENTER_LEFT" fillHeight="false">
+                        <children>
+                           <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-1" text="What's on your mind?" />
+                           <Spacer />
+                           <Button mnemonicParsing="false" onAction="#closeCompose" styleClass="rounded" text="✖" />
+                        </children>
+                     </HBox>
+                     <TextArea fx:id="tweetInput" prefHeight="150.0" promptText="Share your ideas with the world..." styleClass="text" wrapText="true">
+                        <font>
+                           <Font size="16.0" />
+                        </font>
+                     </TextArea>
+                     <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                        <children>
+                           <Text fx:id="characterCount" strokeType="OUTSIDE" strokeWidth="0.0" />
+                           <Button fx:id="sendTweetButton" mnemonicParsing="false" onAction="#sendTweet" styleClass="accent" text="Send" />
+                        </children>
+                     </HBox>
+                  </children>
+                  <padding>
+                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                  </padding>
+               </VBox>
+            </children>
+            <effect>
+               <DropShadow height="100.0" radius="49.5" width="100.0">
+                  <color>
+                     <Color opacity="0.30000001192092896" />
+                  </color>
+               </DropShadow>
+            </effect>
+         </HBox>
+      </children>
+   </StackPane>
 </HBox>

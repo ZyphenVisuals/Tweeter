@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<fx:root type="Pane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      style="-fx-background-color: -color-bg-default; -fx-background-radius: 10;">
+    <effect>
+        <DropShadow height="50.0" radius="24.5" width="50.0">
+            <color>
+                <Color opacity="0.30000001192092896"/>
+            </color>
+        </DropShadow>
+    </effect>
+    <VBox spacing="5.0">
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        </padding>
+        <HBox alignment="CENTER_LEFT" spacing="5.0">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-muted" fx:id="username"/>
+            <Circle fill="DODGERBLUE" radius="3.0" stroke="BLACK" strokeType="INSIDE"
+                    style="-fx-fill: -color-fg-subtle;"/>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-subtle" fx:id="date"/>
+        </HBox>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="500.0" fx:id="text">
+            <font>
+                <Font size="16.0"/>
+            </font>
+            <VBox.margin>
+                <Insets/>
+            </VBox.margin>
+        </Text>
+    </VBox>
+</fx:root>
+

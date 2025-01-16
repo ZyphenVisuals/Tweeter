@@ -5,6 +5,7 @@ import atlantafx.base.controls.RingProgressIndicator;
 import com.google.gson.Gson;
 import com.zyphenvisuals.tweeter.model.AuthToken;
 import com.zyphenvisuals.tweeter.model.LoginRequest;
+import com.zyphenvisuals.tweeter.model.TweetModel;
 import com.zyphenvisuals.tweeter.network.NetworkController;
 import com.zyphenvisuals.tweeter.router.RouterController;
 import com.zyphenvisuals.tweeter.router.RouterPath;
@@ -23,6 +24,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.http.HttpResponse;
 import java.time.Instant;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Login implements Initializable {
@@ -110,7 +112,7 @@ public class Login implements Initializable {
         TooltipWrapper<Button> signUpWrapper = new TooltipWrapper<>(
                 loginButton,
                 validator.containsErrorsProperty(),
-                Bindings.concat("Cannot sign up:\n", validator.createStringBinding())
+                Bindings.concat("Cannot log in:\n", validator.createStringBinding())
         );
         ((HBox)parentOfButton).getChildren().add(signUpWrapper);
 

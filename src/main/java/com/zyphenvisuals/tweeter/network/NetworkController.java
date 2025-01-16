@@ -36,6 +36,8 @@ public class NetworkController {
             // serialize body
             String jsonBody = gson.toJson(body);
 
+            System.out.println(jsonBody);
+
             // add method and body
             request.POST(HttpRequest.BodyPublishers.ofString(jsonBody));
 

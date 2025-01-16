@@ -6,11 +6,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import lombok.Getter;
 
 import java.io.IOException;
 import java.util.Objects;
 
 public class RouterController {
+    @Getter
+    private static RouterPath currentPath;
+
     public static void goTo(ActionEvent event, RouterPath path) {
         // TODO proper logging
         System.out.println("Going to " + path);
@@ -44,8 +48,12 @@ public class RouterController {
         double width = stage.getWidth();
         double height = stage.getHeight();
 
-        // load the scene
+        // set the path
+        RouterPath oldPath = currentPath;
+        currentPath = path;
+
         try {
+            // load the scene
             Scene newScene = new Scene(FXMLLoader.load(Objects.requireNonNull(TweeterLauncher.class.getResource(fxmlFilename))));
 
             // set it
@@ -57,7 +65,9 @@ public class RouterController {
 
             stage.show();
         } catch (IOException e) {
+            currentPath = oldPath;
             System.err.println("Failed to load fxml file: " + fxmlFilename);
+            e.printStackTrace();
         }
     }
 }
