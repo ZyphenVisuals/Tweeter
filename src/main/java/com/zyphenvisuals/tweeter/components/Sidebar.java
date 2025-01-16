@@ -1,5 +1,6 @@
 package com.zyphenvisuals.tweeter.components;
 
+import com.zyphenvisuals.tweeter.background.DateUpdater;
 import com.zyphenvisuals.tweeter.network.NetworkController;
 import com.zyphenvisuals.tweeter.router.RouterController;
 import com.zyphenvisuals.tweeter.router.RouterPath;
@@ -23,19 +24,23 @@ public class Sidebar implements Initializable {
     private Button logoutButton;
 
     public void goToHome(ActionEvent actionEvent) {
+        DateUpdater.reset();
         RouterController.goTo(actionEvent, RouterPath.HOME);
     }
 
     public void goToSearch(ActionEvent actionEvent) {
+        DateUpdater.reset();
         RouterController.goTo(actionEvent, RouterPath.SEARCH);
     }
 
     public void goToSettings(ActionEvent actionEvent) {
+        DateUpdater.reset();
         RouterController.goTo(actionEvent, RouterPath.SETTINGS);
     }
 
     public void goToLogin(ActionEvent actionEvent) {
         NetworkController.resetToken();
+        DateUpdater.reset();
         RouterController.goTo(actionEvent, RouterPath.LOGIN);
     }
 

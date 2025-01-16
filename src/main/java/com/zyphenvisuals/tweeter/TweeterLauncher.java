@@ -2,6 +2,7 @@ package com.zyphenvisuals.tweeter;
 
 import atlantafx.base.theme.PrimerDark;
 
+import com.zyphenvisuals.tweeter.background.DateUpdater;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -28,6 +29,14 @@ public class TweeterLauncher extends Application {
     public static void main(String[] args) {
         // TODO proper logging
         System.out.println("Starting app with java version: "+System.getProperty("java.version") + ", javafx.version: " + System.getProperty("javafx.version"));
+
+        // start background threads
+        DateUpdater.start();
+
+        // launch app
         launch();
+
+        // stop background threads
+        DateUpdater.stop();
     }
 }

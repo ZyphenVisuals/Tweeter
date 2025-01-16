@@ -1,6 +1,10 @@
 package com.zyphenvisuals.tweeter.components;
 
+import com.zyphenvisuals.tweeter.background.DateUpdater;
 import com.zyphenvisuals.tweeter.model.TweetModel;
+import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
@@ -8,7 +12,9 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.sql.Time;
-import java.time.*;
+import java.time.Duration;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.TextStyle;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
@@ -91,12 +97,8 @@ public class Tweet extends Pane {
         createdAt = data.getCreated().toLocalDateTime().atZone(ZoneId.systemDefault());
         date.setText(getFormattedDate(createdAt));
 
-        // start updating the time
-        new Timer().scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                updateDate();
-            }
-        }, 1000, 1000);
+        // submit the date for updates
+        Runnable updateMethod = this::updateDate;
+        DateUpdater.addUpdateTask(updateMethod);
     }
 }
