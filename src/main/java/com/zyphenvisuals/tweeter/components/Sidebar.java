@@ -45,8 +45,8 @@ public class Sidebar implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // highlight path
         RouterPath currentPath = RouterController.getCurrentPath();
-
         switch (currentPath) {
             case HOME -> {
                 homeButton.getStyleClass().add("accent");
@@ -58,5 +58,9 @@ public class Sidebar implements Initializable {
                 settingsButton.getStyleClass().add("accent");
             }
         }
+
+        // add username to sign out
+        String oldText = logoutButton.getText();
+        logoutButton.setText(oldText + " (@" + NetworkController.getUsername() + ")");
     }
 }

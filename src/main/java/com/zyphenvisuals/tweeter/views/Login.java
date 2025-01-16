@@ -4,6 +4,8 @@ import atlantafx.base.controls.Message;
 import com.google.gson.Gson;
 import com.zyphenvisuals.tweeter.model.AuthToken;
 import com.zyphenvisuals.tweeter.model.LoginRequest;
+import com.zyphenvisuals.tweeter.model.TweetModel;
+import com.zyphenvisuals.tweeter.model.UserData;
 import com.zyphenvisuals.tweeter.network.NetworkController;
 import com.zyphenvisuals.tweeter.router.RouterController;
 import com.zyphenvisuals.tweeter.router.RouterPath;
@@ -19,6 +21,7 @@ import net.synedra.validatorfx.Validator;
 
 import java.net.URL;
 import java.net.http.HttpResponse;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Login implements Initializable {
@@ -62,6 +65,11 @@ public class Login implements Initializable {
 
             // set the token
             NetworkController.setToken(token.getToken());
+
+            // get username
+            HttpResponse<String> res2 =  NetworkController.sendGetRequest("/user/me", List.of());
+            UserData user = gson.fromJson(res2.body(), UserData.class); // no need to check, we're sure we're authenticated
+            NetworkController.setUsername(user.getUsername());
 
             // go home
             RouterController.goTo(RouterPath.HOME);

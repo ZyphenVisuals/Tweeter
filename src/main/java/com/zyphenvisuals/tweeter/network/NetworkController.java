@@ -13,11 +13,15 @@ import java.util.List;
 
 public class NetworkController {
     // configs
+    private static final String baseUrl = "https://tweeter.zyphenvisuals.com/api/v1";
+
+    // user data
     @Setter
     @Getter
-    private static String token = null;
-
-    private static final String baseUrl = "https://tweeter.zyphenvisuals.com/api/v1";
+    private static String token;
+    @Setter
+    @Getter
+    private static String username;
 
     // clients and stuff
     private static final HttpClient client = HttpClient.newHttpClient();
@@ -25,6 +29,7 @@ public class NetworkController {
 
     public static void resetToken() {
         NetworkController.token = null;
+        NetworkController.username = null;
     }
 
     public static HttpResponse<String> sendPostRequest(String path, Object body)  {
