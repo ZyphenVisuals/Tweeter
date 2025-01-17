@@ -156,11 +156,15 @@ public class Home implements Initializable {
 
         HttpResponse<String> response = NetworkController.sendPostRequest("/tweet/post", new PostTweetRequest(tweetContent));
 
-        if(response.statusCode() == 201) {
+        if(response.statusCode() == 200) {
             System.out.println("Tweet sent");
             tweetInput.clear();
             closeCompose(actionEvent);
             sendTweetButton.getParent().setDisable(false);
+
+            // add the tweet to the screen
+            TweetModel tweetModel = gson.fromJson(response.body(), TweetModel.class);
+            tweetContainer.getChildren().addFirst(new Tweet(tweetModel));
         } else {
             System.out.println("Sending tweet failed with code:" + response.statusCode());
             sendTweetButton.getParent().setDisable(false);

@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -94,7 +95,12 @@ public class Tweet extends Pane {
         text.setText(data.getText());
 
         // set date
-        createdAt = data.getCreated().toLocalDateTime().atZone(ZoneId.systemDefault());
+        // handle null (this happens when you post a tweet)
+        Timestamp created = data.getCreated();
+        if(created == null){
+            created = new Timestamp(System.currentTimeMillis());
+        }
+        createdAt = created.toLocalDateTime().atZone(ZoneId.systemDefault());
         date.setText(getFormattedDate(createdAt));
 
         // submit the date for updates
